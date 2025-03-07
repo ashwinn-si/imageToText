@@ -5,7 +5,7 @@ import HomePage from "./Page/HomePage";
 function App() {
     return (
         <div className="overflow-x-hidden">
-            <ThemeChanger />
+            <ThemeChanger />    
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
