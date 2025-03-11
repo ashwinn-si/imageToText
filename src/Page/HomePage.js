@@ -17,7 +17,6 @@ export default function HomePage() {
     const fileInputRef = useRef(null);
 
     const API_URL = process.env.REACT_APP_API_URL;
-    console.log(process.env.REACT_APP_API_URL);
     const API_KEY = process.env.REACT_APP_API_KEY;
 
     const handleFileChange = (e) => {
@@ -178,7 +177,13 @@ export default function HomePage() {
             formData.append("isOverlayRequired", "false");
 
             // Send request to OCR API
-            const response = await axios.post(API_URL, formData);
+            let response ;
+            await axios.post(API_URL, formData).then((res)=>{
+                response = res;
+                console.log(res.data);
+            }).catch((err) => {
+                console.log(err)
+            });
 
             // Check if ParsedResults exists and has at least one item
             if (response.data && response.data.ParsedResults && response.data.ParsedResults.length > 0) {
